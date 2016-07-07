@@ -9,32 +9,33 @@ class TodoList extends React.Component {
     super();
 
     this.state = {
-    todos: [],
+    items: [],
     counts:
       { todo: 0, done: 0},
     };
 
   }
 
-  addTodo() {
-    this.setState({
-        count: this.state.count + 1
-    });
+  createItem(itemText) {
+    return (
+      <TodoItem>{itemText}</TodoItem>
+    );
+  }
+
+  updateItems(newItem) {
+    var allItems = this.state.items.concat([newItem]);
+    this.setState({items: allItems});
   }
 
   render() {
     return (
       <div>
-        <h2>Todo List</h2>
-          <table>
-            <tbody>
-
-            </tbody>
-          </table>
-        <button onClick={ this.addTodo.bind(this) }>Add todo</button>
+        <TodoList items={this.state.items}/>
+        <TodoForm onFormSubmit={this.updateItems}/>
+        <ul>{this.props.items.map(createItem.bind(this))}</ul>;
       </div>
     );
-  };
+  }
 }
 
 export default TodoList;

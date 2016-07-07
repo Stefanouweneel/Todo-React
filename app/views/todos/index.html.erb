@@ -1,5 +1,4 @@
-<h1>TodoList</h1>
-
-  <% @todos.each do |todo| %>
-  <p><%= todo.title %></p>
-  <% end %>
+<%= react_component('TodosList',
+          render(template: 'todos/index', formats: :json)
+         )
+ %>
