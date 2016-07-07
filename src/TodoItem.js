@@ -1,5 +1,5 @@
 import React from 'react';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 class TodoItem extends React.Component {
   constructor() {
