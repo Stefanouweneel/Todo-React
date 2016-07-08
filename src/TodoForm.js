@@ -5,7 +5,25 @@ class TodoForm extends React.Component {
   constructor() {
     super();
 
+    this.state = {
+      todos: []
+    };
+
   }
+
+  onSubmit() {
+    return (
+
+    );
+  }
+
+  render()
+    return (
+      <form onSubmit= >
+        <input type='text' ref='todo' />
+        <input type='submit' value='Add'/>
+      </form>
+  );
 }
 
 export default TodoForm;

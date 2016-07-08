@@ -10,9 +10,17 @@ class TodoItem extends React.Component {
     };
   }
 
+  deleteTodo() {
+    return (
+
+    );
+  }
+
   render() {
     return (
-      <li>{this.props.children}</li>
+      <div>
+
+      </div>
     );
   }
 }

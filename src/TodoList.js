@@ -9,30 +9,30 @@ class TodoList extends React.Component {
     super();
 
     this.state = {
-    items: [],
+    todos: [],
     counts:
       { todo: 0, done: 0},
     };
 
   }
 
-  createItem(itemText) {
+  createTodo() {
     return (
-      <TodoItem>{itemText}</TodoItem>
+
     );
   }
 
-  updateItems(newItem) {
-    var allItems = this.state.items.concat([newItem]);
-    this.setState({items: allItems});
+  clearTodos() {
+    return (
+
+    );
   }
 
   render() {
     return (
       <div>
-        <TodoList items={this.state.items}/>
-        <TodoForm onFormSubmit={this.updateItems}/>
-        <ul>{this.props.items.map(createItem.bind(this))}</ul>;
+        	<form onSubmit={this.createTodo} />
+          <form onSubmit={this.clearTodos} />
       </div>
     );
   }
