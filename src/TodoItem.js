@@ -1,10 +1,27 @@
 import React from 'react';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 class TodoItem extends React.Component {
-  constructor() {
+  constructor(){
     super();
 
+    this.state = {
+      count: 0
+    };
+  }
+
+  deleteTodo() {
+    return (
+
+    );
+  }
+
+  render() {
+    return (
+      <div>
+
+      </div>
+    );
   }
 }
 
