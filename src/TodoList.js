@@ -16,6 +16,16 @@ class TodoList extends React.Component {
 
   }
 
+  $.ajax({
+    type: "PUT",
+    url: "/todos/" + todoId + ".json",
+    data: JSON.stringify({
+      todo: { completed: isCompleted }
+    }),
+    contentType: "application/json",
+    dataType: "json"
+  })
+
   createTodo() {
     return (
 
