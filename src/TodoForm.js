@@ -17,13 +17,21 @@ class TodoForm extends React.Component {
   //   );
   // }
 
-  // render()
-  //   return (
-  //     // <form onSubmit= >
-  //     //   <input type='text' ref='todo' />
-  //     //   <input type='submit' value='Add'/>
-  //     // </form>
-  // );
+  onSubmit(event){
+      // if we don't call event.preventDefault, the browser will think we want to submit the form
+      event.preventDefault();
+      this.props.onSubmit(this.refs.todo.value);
+  }
+
+  render() {
+      return (
+          <form onSubmit={this.onSubmit.bind(this)}>
+              <label>Username</label>
+              <input ref="todo" />
+              <button>Add Todo</button>
+          </form>
+      );
+  }
 }
 
 export default TodoForm;

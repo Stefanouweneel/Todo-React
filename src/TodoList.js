@@ -65,6 +65,8 @@ class TodoList extends React.Component {
     return (
       <div>
         <h1>Whatever</h1>
+          <TodoForm />
+          <TodoItem />
           <p> {this.state.todos.map(this.renderTodo.bind(this))}</p>
       </div>
     );

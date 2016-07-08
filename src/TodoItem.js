@@ -12,6 +12,11 @@ class TodoItem extends React.Component {
     };
   }
 
+  plusOne() {
+    var newTodo = this.props.todo + 1;
+    this.props.onChange(this.props.title, newTodo);
+  }
+
   // renderTodos(todos){
   //    $.ajax({
   //      type: "PUT",
@@ -30,13 +35,17 @@ class TodoItem extends React.Component {
   //   );
   // }
 
-  render() {
-    return (
-      <div>
-        // <p>{this.renderTodos.map()}</p>
-      </div>
-    );
+    render() {
+      return (
+        <tr>
+          <td>{this.props.title}</td>
+          <td>{this.props.todo} {this.renderTodo()}</td>
+          <td>
+              <button onClick={this.plusOne.bind(this)}>+1</button>
+          </td>
+        </tr>
+      );
+    }
   }
-}
 
 export default TodoItem;
