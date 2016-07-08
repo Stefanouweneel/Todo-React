@@ -27,19 +27,19 @@ class TodoList extends React.Component {
     return <Todo
       title={todo.title}
       completed={todo.completed} />;
-  } 
+  }
 
-  renderTodos(todo){
-     $.ajax({
-       type: "POST",
-       url: "https://secret-everglades-41596.herokuapp.com/todos.json",
-       data: JSON.stringify({
-           todos: todo
-       }),
-       contentType: "application/json",
-       dataType: "json"
-     });
-   }
+  // renderTodos(todo){
+  //    $.ajax({
+  //      type: "POST",
+  //      url: "https://secret-everglades-41596.herokuapp.com/todos.json",
+  //      data: JSON.stringify({
+  //          todos: todo
+  //      }),
+  //      contentType: "application/json",
+  //      dataType: "json"
+  //    });
+  //  }
 
   // componentDidMount() {
   //   this.loadTodos();
