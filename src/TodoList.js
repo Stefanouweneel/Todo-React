@@ -10,44 +10,38 @@ class TodoList extends React.Component {
 
     this.state = {
       message: "There are no tasks yet.",
-      todos: []
+      todoList: []
     };
   }
 
-  componentDidMount(){
-    var self = this;
-    $.getJSON("https://secret-everglades-41596.herokuapp.com", function(data){
-      self.setState({
-        todos: data.todos
-      });
+  getList() {
+    let url = this.props.url;
+    let component = this;
+
+    $.ajax({
+      type: 'GET',
+      url: 'https://secret-everglades-41596.herokuapp.com/todos.json',
+      dataType: 'json',
+      contentType: "application/json",
+      success: function(data){
+        component.setState({
+          todoList: data
+        });
+      }
     });
   }
 
-  renderTodo(todo){
-    return <Todo
-      title={todo.title}
-      completed={todo.completed} />;
+  renderTodoItem(item, index) {
+    return (
+      <TodoItem
+        key={index}
+        title={item.title}
+        completed={item.completed}
+        updated_at={item.updated_at}
+        id={item.id} />
+    );
   }
 
-  // renderTodos(todo){
-  //    $.ajax({
-  //      type: "POST",
-  //      url: "https://secret-everglades-41596.herokuapp.com/todos.json",
-  //      data: JSON.stringify({
-  //          todos: todo
-  //      }),
-  //      contentType: "application/json",
-  //      dataType: "json"
-  //    });
-  //  }
-
-  // componentDidMount() {
-  //   this.loadTodos();
-  // }
-  //
-  // loadTodos() {
-  //   let component = this;
-  // }
   //
   // createTodo() {
   //   return (
@@ -61,13 +55,17 @@ class TodoList extends React.Component {
   //   );
   // }
 
+
   render() {
+    let todoList = this.state.todoList;
+
     return (
       <div>
-        <h1>Whatever</h1>
-          <TodoForm />
-          <TodoItem />
-          <p> {this.state.todos.map(this.renderTodo.bind(this))}</p>
+        <h1>Todo List:</h1>
+        <ul>
+          {this.props.title}
+          {todoList.map(this.renderTodoItem.bind(this))}
+        </ul>
       </div>
     );
   }
