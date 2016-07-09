@@ -5,15 +5,7 @@ import TodoList from './TodoList'
 const apitUrl = "https://secret-everglades-41596.herokuapp.com";
 
 class App extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-        todos
-    };
-  }
-
+  
   render() {
     return (
       <div>
