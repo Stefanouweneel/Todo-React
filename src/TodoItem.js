@@ -5,45 +5,43 @@ class TodoItem extends React.Component {
 
   constructor() {
     super();
+  }
 
-    this.state = {
-      message: "There are no tasks yet.",
-      todos: []
+  createTodo(event) {
+  event.preventDefault();
+
+  let component = this;
+  let title = this.refs.newTodoInput.value;
+
+
+    let newTodo = {
+      id: null,
+      title: title,
+      completed: false
     };
+
+    jQuerry.ajax({
+      type: "POST",
+      url: `https://secret-everglades-41596.herokuapp.com/todos.json`,
+      data: JSON.stringify({
+          todo: newTodo
+      }),
+      contentType: "application/json",
+      dataType: "json"
+    })
+      .done(function(data) {
+        component.props.onChange();
+        component.refs.newTodoInput.value = "";
+      })
   }
-
-  plusOne() {
-    var newTodo = this.props.todo + 1;
-    this.props.onChange(this.props.title, newTodo);
-  }
-
-  // renderTodos(todos){
-  //    $.ajax({
-  //      type: "PUT",
-  //      url: "https://secret-everglades-41596.herokuapp.com/todos.json",
-  //      data: JSON.stringify({
-  //          todos: todo
-  //      }),
-  //      contentType: "application/json",
-  //      dataType: "json"
-  //    });
-  //  }
-
-  // deleteTodo() {
-  //   return (
-  //
-  //   );
-  // }
 
     render() {
       return (
-        <tr>
-          <td>{this.props.title}</td>
-          <td>{this.props.todo} {this.renderTodo()}</td>
-          <td>
-              <button onClick={this.plusOne.bind(this)}>+1</button>
-          </td>
-        </tr>
+        <div>
+          <label>
+            <p>{this.props.title}</p>
+          </label>
+        </div>
       );
     }
   }

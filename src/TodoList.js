@@ -20,7 +20,7 @@ class TodoList extends React.Component {
 
     $.ajax({
       type: 'GET',
-      url: 'https://secret-everglades-41596.herokuapp.com/todos.json',
+      url: `https://secret-everglades-41596.herokuapp.com/todos.json`,
       dataType: 'json',
       contentType: "application/json",
       success: function(data){
@@ -41,7 +41,6 @@ class TodoList extends React.Component {
         id={item.id} />
     );
   }
-
   //
   // createTodo() {
   //   return (
@@ -63,7 +62,7 @@ class TodoList extends React.Component {
       <div>
         <h1>Todo List:</h1>
         <ul>
-          {this.props.title}
+          <p>{this.props.title}</p>
           {todoList.map(this.renderTodoItem.bind(this))}
         </ul>
       </div>
