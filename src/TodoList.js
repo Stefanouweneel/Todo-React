@@ -1,6 +1,5 @@
 import React from 'react';
 import $ from 'jquery';
-import TodoForm from './TodoForm';
 import TodoItem from './TodoItem';
 
 
@@ -9,62 +8,45 @@ class TodoList extends React.Component {
     super();
 
     this.state = {
-      message: "There are no tasks yet.",
-      todoList: []
-    };
-  }
+			todos: [
+				{id: 0, title: "", completed: false}
+			]
+		};
+	}
 
-  getList() {
-    let url = this.props.url;
-    let component = this;
+	componentDidMount() {
+		this.loadTodos();
+	}
 
-    $.ajax({
-      type: 'GET',
-      url: `https://secret-everglades-41596.herokuapp.com/todos.json`,
-      dataType: 'json',
-      contentType: "application/json",
-      success: function(data){
-        component.setState({
-          todoList: data
-        });
-      }
-    });
-  }
+	loadTodos(event) {
+		let component = this;
 
-  renderTodoItem(item, index) {
-    return (
-      <TodoItem
-        key={index}
-        title={item.title}
-        completed={item.completed}
-        updated_at={item.updated_at}
-        id={item.id} />
-    );
-  }
-  //
-  // createTodo() {
-  //   return (
-  //
-  //   );
-  // }
-  //
-  // clearTodos() {
-  //   return (
-  //
-  //   );
-  // }
+		$.getJSON(`https://secret-everglades-41596.herokuapp.com/todos.json`, function(data) {
+			component.setState({
+				todos: data
+			});
+		});
+	}
 
+	renderTodos(todo, i) {
+		return (
+			<TodoItem
+				key={todo.id}
+				id={todo.id}
+				title={todo.title}
+				completed={todo.completed}
+				createdAt={todo.created_at}
+				updatedAt={todo.updated_at} />
+		);
+	}
 
-  render() {
-    let todoList = this.state.todoList;
-
+	render() {
+		let todos = this.state.todos
     return (
       <div>
-        <h1>Todo List:</h1>
-        <ul>
-          <p>{this.props.title}</p>
-          {todoList.map(this.renderTodoItem.bind(this))}
-        </ul>
+				<ul>
+	        {this.state.todos.map(this.renderTodos.bind(this))}
+	      </ul>
       </div>
     );
   }
