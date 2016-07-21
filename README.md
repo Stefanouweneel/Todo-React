@@ -1,4 +1,4 @@
-# React Starter
+# Todo App in React
 
 An unfinished project to create a Todo App with React and a Rails API. 
 
